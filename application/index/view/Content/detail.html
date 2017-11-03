@@ -1,0 +1,50 @@
+{include file="Common/header" /}
+<!--这里添加css-->
+<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/detail.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="main">
+            <div class="head">
+                <h2>这里是文章的标题这里是文章的标题这里是文章的标题这里是文章的标题</h2>
+            </div>
+            <div class="info">
+                <h5>
+                    <span>分类：PHP</span>&nbsp;&nbsp;
+                    <span>时间：2017-11-3</span>&nbsp;&nbsp;
+                    <span>作者：zyz</span>&nbsp;&nbsp;
+                    <span>浏览：1560</span>&nbsp;&nbsp;
+                </h5>
+            </div>
+            <div class="content">
+                <div id="detailbody" class="field_body">
+                    <blockquote><p>在我还20出头不懂事的时候就我就在犯这些错误，我全都遇到过。但是大多数错误我还是一犯再犯。</p></blockquote><p style="text-align: center;"><img src="http://cc.cocimg.com/api/uploads//20171102/1509594180555426.jpg" _src="http://cc.cocimg.com/api/uploads//20171102/1509594180555426.jpg" title="1509594180555426.jpg" alt="wifi-mistakes-100713381-large.jpg"></p><p style="text-align: right;"><span style="color: rgb(192, 0, 0);">编译|枣泥布丁</span></p><p style="text-align: right;"><span style="color: rgb(192, 0, 0);">校对|zhuyu</span></p><p>编码的人还在编码，而菜鸟一直都在犯菜。有时候，甚至经验丰富的老鸟也会犯一些菜鸟犯的错误。但是大多数时候犯的是同一个错误。</p><p>这些错误基本上是属于战略上的。你应该先用版本控制管理好你的代码，但是即使你管理好了你的代码你还是有可能犯这些战略上的错误，然后就像一个孙子一样受罪。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误1：把Make或Shell当成构建工具</strong></span></p><p>如果你不是使用C或者C++语言，Make就不是那么适用了。Make总是为每个文件重新加载一个编译器进程。大多数现代语言并不是设计成为每个文件加载单独的进程，而且你要是想在Java这样的语言中使用Make解决dependency的问题几乎是不可能的。</p><p>我曾经在一个大型网络设备公司工作过，并且通过把它的构建转换到Ant（一个Java构建工具），使构建进程从3小时缩短到了20秒。</p><p>以一个shell脚本来结尾也是一步错棋。最近我为一个实验室写了一个shell框架，因为我不想只是为了一个小实验室，但却要所有人都要去下一整个Java工具集，我原以为是一步好棋，但是其实我真是干了件蠢事儿（一如既往），因为它所依赖的这个软件的下一个版本打破了一切（一如既往）。如果我吸收了它并提供了一个现代化的构建工具，它应该是能够更新dependency的。</p><p><span style="font-size: 20px; color: rgb(192, 0, 0);"><strong>菜鸟错误2：把IDE用作构建工具</strong></span></p><p>大多数的IDE具有一些神奇的构建/部署功能。这在初期可能是件好事，当然仅仅用来测试你自己的代码是非常不错的。但是最终会产生依赖项，而且其他人也会参与编写你的代码。然后你就会搞不清它为什么是在这台设备上编写而不是另一台。你需要一个IDE之外的可重复构建的工具，它应该要可以在连续集成工具上运行。</p><p><strong><span style="font-size: 20px; color: rgb(192, 0, 0);">菜鸟错误3：终止AWS实例</span></strong></p><p>&nbsp;“Terminate”在AWS中意味着“delete everything”——而不是其他大多数工具中的“终止进程”的意思。</p><p>我参与的第一个亚马逊网络服务项目中，有一个开发者推测到一个可以阅读属性的工具应该是可以安全运行的。很不幸的是，如果你不小心阅读了terminate属性，它就会马上终止实例。他在所有一切上都运行了，然后终止了100多个实例。AWS大大减少了犯这类错误的几率，但是实际上“terminate（终止）”确切地说应该被称为“destroy permanently（永久地毁灭）”因为开发者terminate（终止）进程时是知道它们是可被以<span style="white-space: normal;">重启</span>的。但是假如你终止了一个AWS实例，你就永远失去了它们。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误4：测试你在乎的所有内容&nbsp;</strong></span></p><p>上述的开发者还非常容易犯一个菜鸟问题：他把所有我们在乎的东西都测试一遍。正确的做法是他应该创建一个单独的实例，在这个实例上进行测试。即使你认为你所做的是没有害处的，你还是应该在安全的环境测试你的假设。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误5：追求绝对的数据完整性</strong></span></p><p>我看到不止一位开发者使用READ_SERIALIZED &nbsp;以及table locks，因为他们极度追求数据完整性。当然还有很多其他的生产锁强迫症。其实它们都属于糟糕的模式设计以及对数据、并发和风险的不现实理解。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误6：把你的代码放进HTML或把HTML放进你的代码&nbsp;</strong></span></p><p>不论是ASP，JSP，PHP，CGI，或者是直接码，总是有办法把代码塞到HTML里面，而且几乎总是有办法写一些类似<span style="background-color: rgb(219, 229, 241);">out.println(“This is a terrible idea”);.</span>这样的东西，我曾经有段时间是这么干的——差不多是1995年吧……</p><p></p><p>然而现在有更多现代的排列。我曾看到看有些人用JavaScript做一些非常恶心的事情都挺似曾相识的。我们当然可以找到很多更好的办法，例如：一个标签库 ，一个事件处理器，啥都行，就是HTML 代码不行！</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误7： 使用全能列表</strong></span></p><p>我承认在我不确定数据是如何形成时，我会在原型代码中做这件事，但一旦我知道，我就很快放弃这种做法。一般使用高级语言的人都会犯“这”样的错误。“这”样的错误是什么呢？基本上就是，他们不用地图, 关系树, 或者set，而是把所有东西都列在一张表上，然后所有东西都由你自己整理。更糟糕的是，你选择一个数组返回列表，并继续插入中心附近的某个地方。</p><p>这种代码的麻烦在于, 它往往会导致生产。不过, 我想在某些时候, 在操作系统中加载测试垃圾回收器或内存管理是很好的!!!</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误8： I&lt;3继承</strong></span></p><p>哇哇哇！你上了一节关于decomposition的课之后，你决定你的第一步是把一切组织成完美的阶级等级。你忘记储存东西或者使你的项目正常运作——不，你只是想让大家来了解你的大脑是如何运作的，并牢记一组丑陋的并行类结构。我的天哪！你还是快点去DMTF（Desktop Management Task Force 桌面管理任务组）工作吧！</p><p>换句话说，你可以用你屎一样的标准来让大家头痛。但是我劝你最好不要这么做！</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误9： I </strong><strong>&lt;3函数式</strong></span></p><p>你刚刚学到了所有关于函数编程的知识。你认为面向对象编程是个大错误，所有的东西都应该是无状态的和功能性的。那我只能说你很棒棒哦！</p><p>除非我需要在代码中添加更多的东西，否则如果我必须解开每一个函数调用来添加它，那么你就失败了。你失败得很惨哦。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误10： I&lt;3 全球性</strong></span></p><p>写代码很难，思考很难，决定某件事的边界很难。但是你选择不去挣扎，而是直接选择那些最大众的边界。你浪费了内存，你的代码不能并行, 有线程冲突。但是到时你可别想置身事外哦~</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误11：使用巨型对象</strong></span></p><p>有一次, 当我和一个新来的实习生一起工作时。我告诉他工作可能会往几个方向走。其中之一是它们可能会向会话抛出一个巨型对象，然后想为什么“群集不起作用”以及为什么他们的内存不够了。</p><p>果然，我们发现一个带有数以百计的状态变量和方法的类文件来置换它们。当然，它们正在把它推送到会话中。这些东西大部分都不需要在会话中进行，基本上是为了形成一个由手工编写的二级数据库缓存。这对内存是一个巨大的浪费，并且复制它不仅浪费内存还会造成高成本的不必要的会话复制。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误12：死于100</strong><strong>0个对象</strong></span></p><p>就像你能拥有的太少，你可以拥有太多。死于1000个对象倾向于菜鸟错误8:i＜3继承，但是我也亲眼见过在没继承的时候出现类似情况。如果你所有的类文件代码都不到100行，但是你却有成百上千个这样的文件，这样也是错误的……</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误13：我可以合并线程吗？</strong></span></p><p>大多数应用程序代码都可以用单线程的世界视图编写。但是当你开始写应用的服务器、数据库或者其他底层代码时就不能这么干了，大多数商务软件都可以用类似的底层代码来编写——所以你不用写这些直接转到多线程就好了。</p><p>所以最好别写了。尤其是现在，不写线程代码、分发和利用线程变得越来越容易。看看Spark是如何工作的吧：你不必把混乱的线程都编织到一起。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误14：row locks的使用</strong></span></p><p>这对SQL服务器还有DB2用户来说确实是个大问题。默认数据库设置用于大多数平台上的行锁（DB2在其他平台上进行页面锁定，这肯定更糟糕了）。Oracle的默认设置就没那么傻了。网上曾经对行锁和快照隔离进行过争论。从理论上来说行锁效率更高—但是你有多一条带有争议性的线程都不行（也就是：<span style="white-space: normal;">大多数</span>软件的现状）。</p><p>更不用说大多数开发者根本不知道”snapshot isolation”的实际意义，也不知道如何开启它。所以工作就常常是在负载过轻的状态运转着，因为它们用的是row locks b。好好搞清楚snapshot isolation的意义和使用方法吧。千万别用row locks。</p><p><span style="color: rgb(192, 0, 0); font-size: 20px;"><strong>菜鸟错误15：序列的使用</strong></span></p><p>来，跟我念：我将不会为特殊键使用数据库序列，除非我真的需要序列化的值（也就是在极少数的情况下。）那就是锁定和远程处理在同一个包的时候，这就非常令人痛苦了！</p><p>你可以使用一个安全的随机生成器支撑的128位的UUID，而不是用单线程处理数据库序列生成器的一切。如果你怕被复制的话，要么你数学很差，要么你并不像重视你的生活那样重视数据。即使在你生成了万亿个ID之后，你还是有更大的可能性被流星击中你的大头哦~</p><p>希望你能尊重你自己，你的职业，还有在你之后的维护人员。所以千万别干傻事儿，但即使你可能是经验丰富的开发者，有时也还是会犯这些低级错误的。</p><p><span style="color: rgb(0, 0, 0);"><em>最后送大家一句话：</em></span><span style="color: rgb(192, 0, 0);"><em>Go forth and sin no more.</em></span></p>
+                </div>
+
+                <div class="back text-center" title="返回" onclick="window.history.back();">
+                    <span class="fa fa-mail-reply"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{include file="Common/footer" /}
+<!--这里添加js-->
+
+<script>
+    //响应式布局富文本图片调整
+    $(document).ready(function(){
+        $(".content img").addClass('img-responsive');
+    });
+    $("body").bind("keydown",function(event){
+        if (event.keyCode == 116) {
+            event.preventDefault(); //阻止默认刷新
+            //location.reload();
+            //采用location.reload()在火狐下可能会有问题，火狐会保留上一次链接
+            location=location;
+        }
+    })
+</script>
+</body>
+</html>
