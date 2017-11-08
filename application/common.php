@@ -11,6 +11,15 @@
 
 // 应用公共文件
 
+function show($status=false,$msg='',$data=[])
+{
+    $response = [
+        'status'    =>  $status,
+        'msg'       =>  $msg,
+        'date'      =>  $data
+    ];
+    return json($response);
+}
 
 /**
  * [后台]判断菜单是否被选中的样式调整
