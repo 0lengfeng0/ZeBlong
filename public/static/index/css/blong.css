@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding:0;
+    font-family: -apple-system, BlinkMacSystemFont, "opensans", "Optima", "Microsoft Yahei", sans-serif;
+}
+body{
+    background: url("../img/bk3.png");
+    /*background-size: cover;*/
+}
+body a{
+    list-style: none;
+    cursor: pointer;
+}
+.cbp_tmlabel{
+    color: black;
+}
+.cbp_tmtimeline > li .cbp_tmlabel:hover{
+    transition:All 0.2s ease-in-out;
+    -webkit-transition:All 0.2s ease-in-out;
+    -moz-transition:All 0.2s ease-in-out;
+    -o-transition:All 0.2s ease-in-out;
+
+    transform:scale(1.01);
+    -webkit-transform:scale(1.01);
+    -moz-transform:scale(1.01);
+    -o-transform:scale(1.01);
+    -ms-transform:scale(1.01);
+}
+.page_control {
+    margin-bottom: 20px;
+}
+.page_control a{
+    background: rgba(255,255,255,0.7);
+    border-radius: 999px;
+    box-shadow: 0 0 5px 2px #ccc;
+    color: black;
+    display: inline-block;
+    width:100px;
+    height:50px;
+    transition: .5s;
+}
+.page_control a:hover{
+    box-shadow: 0 0 10px 2px #a4c2f4;
+}
+.page_control a span{
+    line-height: 50px;
+}
