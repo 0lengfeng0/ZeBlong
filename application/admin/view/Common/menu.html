@@ -9,12 +9,12 @@
         <div id="cm-menu-items-wrapper">
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items">
-                    <li class="active"><a href="{:url('admin/Index/index')}" class="sf-house">主页</a></li>
-                    <li class="cm-submenu">
+                    <li class="{:isActive('Index')}"><a href="{:url('admin/Index/index')}" class="sf-house">主页</a></li>
+                    <li class="cm-submenu {:isActive('Blong',1,'open')}">
                         <a class="sf-window-layout">博客管理 <span class="caret"></span></a>
                         <ul>
-                            <li><a href="layouts-breadcrumb1.html">分类管理</a></li>
-                            <li><a href="layouts-breadcrumb2.html">博文管理</a></li>
+                            <li class="{:isActive(array('category'),2)}"><a href="{:url('admin/Blong/category')}">分类管理</a></li>
+                            <li class="{:isActive(array('content'),2)}"><a href="{:url('admin/Blong/content')}">博文管理</a></li>
                         </ul>
                     </li>
                 </ul>
