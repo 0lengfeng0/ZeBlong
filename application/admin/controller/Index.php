@@ -8,6 +8,8 @@ class Index extends Common
     //首页
     public function index()
     {
-        return $this->fetch();
+
+        $this->assign('_title','主页');
+        return $this->fetch('index');
     }
 }
