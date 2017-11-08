@@ -6,12 +6,26 @@
     <div class="panel panel-default">
         <div class="panel-heading">全部分类</div>
         <div class="panel-body" id="demo-buttons">
+            <div class="table-responsive">
+                <div id="toolbar" class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除
+                    </button>
+                </div>
+                <table class="table table-bordered table-hover" id="content_table">
 
-
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 {include file="Common/bottom" /}
 <!--这里引用自定义js-->
+<script>
+    var SCOPE = {
+        'get_table_url' :   "{:url('Blong/category')}",
+    };
+</script>
+<script src="__STATIC__/admin/js/category.js"></script>
 {include file="Common/footer" /}
