@@ -27,7 +27,7 @@ var TableInit = function(){
                 sidePagination:'server',
                 pageNumber:1,
                 pageSize:15,
-                pageList: [5,10,15,25,50,100],
+                pageList: [1,5,10,15,25,50,100],
                 search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列

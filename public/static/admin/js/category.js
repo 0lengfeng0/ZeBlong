@@ -8,7 +8,7 @@ $(function(){
     var columns = [
         {
             field : 'checked',
-            checkbox : false
+            checkbox : true
         },
         {
             field:'id',

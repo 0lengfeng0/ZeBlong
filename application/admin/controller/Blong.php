@@ -17,8 +17,10 @@ class Blong extends Common
                 $offset = input('post.offset'); //页码
                 $order = input('post.order');   //排序规则
                 $sort = input('post.sort');     //排序字段
+                $search = input('search');      //搜索关键字
                 $condition = [
-                    'is_del'    =>  0
+                    'is_del'    =>  0,
+                    'name'      =>  ['like','%'.$search.'%'],
                 ];
                 $order_str = 'create_time DESC';
                 if(!empty($order) && !empty($sort)){
@@ -41,8 +43,11 @@ class Blong extends Common
 
                 $result = [];
                 $result['total'] = $count;
-                foreach ($list as $v){
-                    $result['rows'][] = $v->getData();
+                $result['rows'] = [];
+                if(!empty($list)){
+                    foreach ($list as $v){
+                        $result['rows'][] = $v->getData();
+                    }
                 }
                 return json($result);
 //                return show(true,'获取数据成功',$result);
