@@ -24,6 +24,7 @@ var TableInit = function(){
                 undefinedText:'无',
                 sortOrder:'desc',
                 queryParams:oTableInit.queryParams, //传递参数
+                onEditableSave:oTableInit.onEditableSave,
                 sidePagination:'server',
                 pageNumber:1,
                 pageSize:15,

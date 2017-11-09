@@ -17,7 +17,8 @@ $(function(){
         {
             field:'name',
             title:'分类名',
-            sortable:true
+            sortable:true,
+            editable:true,
 
         },
         {
@@ -36,6 +37,26 @@ $(function(){
             }
         }
     ];
+    //表格行编辑事件
+    oTable.onEditableSave = function (field, row, oldValue, $el) {
+        if(!row.name){
+            layer.msg('请输入新分类名',{icon:7});
+            return false;
+        }
+        $.ajax({
+            type:'POST',
+            data:{'id':row.id,'name':row.name},
+            url :SCOPE.edit_cat_url,
+            dateType:'json',
+            success:function(res){
+                if(res.status == false){
+                    layer.msg(res.msg,{icon:5});
+                }else{
+                    layer.msg(res.msg,{icon:6});
+                }
+            }
+        });
+    };
     oTable.Init("#content_table",SCOPE.get_table_url,columns,"#toolbar");
 
     //表格单行删除按钮
@@ -63,12 +84,12 @@ $(function(){
     });
     //模态框确认按钮
     $("#cat_add_yes_btn").click(function(){
-        $("#cat_add_yes_btn").prop('disabled',1).html("请稍后");
         var name = $('input[name="cat_name"]').val();
         if(!name){
             layer.msg("请填写分类名称",{icon:7});
             return false;
         }
+        $("#cat_add_yes_btn").prop('disabled',1).html("请稍后");
         $.ajax({
             type:'POST',
             data:{'name':name},

@@ -1,5 +1,7 @@
 {include file="Common/header" /}
 <!-- 这里引入自定义cs -->
+<!--bootsrtap-editable-->
+<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap-table/bootstrap-editable.css">
 {include file="Common/menu" /}
 
 <div class="container-fluid">
@@ -51,8 +53,11 @@
     var SCOPE = {
         'get_table_url' :   "{:url('Blong/category')}",     //表格数据拉取
         'del_td_url'    :   "{:url('Blong/delCategory')}",  //表格删除功能
-        'add_cat_url'   :   "{:url('Blong/addCategory')}"   //新增分类功能
+        'add_cat_url'   :   "{:url('Blong/addCategory')}",   //新增分类功能
+        'edit_cat_url'  :   "{:url('Blong/editCategory')}"   //编辑分类功能
     };
 </script>
+<script src="__STATIC__/bootstrap-table/bootstrap-editable.js"></script>
+<script src="__STATIC__/bootstrap-table/bootstrap-table-editable.js"></script>
 <script src="__STATIC__/admin/js/category.js"></script>
 {include file="Common/footer" /}

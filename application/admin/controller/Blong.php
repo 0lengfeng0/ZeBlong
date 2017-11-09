@@ -102,7 +102,7 @@ class Blong extends Common
         try{
             $category = new Category();
             $name = input('post.name');
-            if(empty($name) || strlen($name) > 10){
+            if(empty($name) || mb_strlen($name) > 10){
                 return show(false,'请输入正确的分类名[1-10字]');
             }
             //添加数据
@@ -118,6 +118,38 @@ class Blong extends Common
             return show(true,'添加成功');
         }catch(Exception $e){
             return show(false,'添加失败');
+        }
+    }
+
+    /**
+     * 修改分类名
+     */
+    public function editCategory()
+    {
+        try{
+            $category = new Category();
+            $id = input('post.id');
+            if(empty($id)){
+                return show(false,'删除失败');
+            }
+            $name = input('post.name');
+            if(empty($name) || mb_strlen($name) > 10){
+                return show(false,'请输入正确的分类名[1-10字]');
+            }
+            //修改数据
+            $condition = [
+                'id'    =>  $id
+            ];
+            $data = [
+                'name'  =>  $name
+            ];
+            $edit_res = $category->editCategory($condition,$data);
+            if($edit_res === false){
+                return show(false,'修改失败');
+            }
+            return show(true,'修改成功');
+        }catch (Exception $e){
+            return show(false,'修改失败');
         }
     }
 
