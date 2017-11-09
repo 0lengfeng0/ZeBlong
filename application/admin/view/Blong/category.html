@@ -8,16 +8,38 @@
         <div class="panel-body" id="demo-buttons">
             <div class="table-responsive">
                 <div id="toolbar" class="btn-group">
-                    <button type="button" class="btn btn-danger btn-sm">
+                    <button type="button" class="btn btn-danger btn-sm" id="del_all_btn">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除
                     </button>
-                    <a type="button" class="btn btn-info btn-sm">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加
+                    <a type="button" class="btn btn-info btn-sm" id="add_cat_btn">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
                     </a>
                 </div>
                 <table class="table table-bordered table-hover" id="content_table">
 
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加模态框 -->
+<div class="modal fade" id="add_modal">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增分类</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>分类名</label>
+                    <input type="text" maxlength="10" name="cat_name" class="form-control" placeholder="请填写分类名">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="cat_add_yes_btn">确定</button>
             </div>
         </div>
     </div>
@@ -29,6 +51,7 @@
     var SCOPE = {
         'get_table_url' :   "{:url('Blong/category')}",     //表格数据拉取
         'del_td_url'    :   "{:url('Blong/delCategory')}",  //表格删除功能
+        'add_cat_url'   :   "{:url('Blong/addCategory')}"   //新增分类功能
     };
 </script>
 <script src="__STATIC__/admin/js/category.js"></script>

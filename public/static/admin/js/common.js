@@ -27,7 +27,7 @@ var TableInit = function(){
                 sidePagination:'server',
                 pageNumber:1,
                 pageSize:15,
-                pageList: [1,5,10,15,25,50,100],
+                pageList: [10,15,25,50,100],
                 search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
@@ -52,3 +52,12 @@ var TableInit = function(){
     };
     return oTableInit;
 };
+
+/**
+ * 时间戳->时间点[Y-m-d H:i]
+ * @param ns 时间戳
+ * @returns {string}
+ */
+function formatDate(ns){
+    return new Date(parseInt(ns) * 1000).toLocaleString('chinese',{hour12:false}).substr(0,15).replace(/年|月|\//g, "-").replace(/日/g, " ");
+}

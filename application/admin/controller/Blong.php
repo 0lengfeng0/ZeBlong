@@ -2,10 +2,14 @@
 namespace app\admin\controller;
 
 use app\common\model\Category;
+use think\Exception;
 
 class Blong extends Common
 {
-    //分类
+    /**
+     * 分类列表
+     * @return mixed|\think\response\Json
+     */
     public function category()
     {
         //判断是否为post请求
@@ -57,6 +61,64 @@ class Blong extends Common
         }
         $this->assign('_title','分类管理');
         return $this->fetch();
+    }
+
+    /**
+     * 删除分类[假删除]
+     * @param $type 删除类型(1-单条，2-多条)
+     * @return mixed
+     */
+    public function delCategory()
+    {
+        try{
+            $category = new Category();
+            $id = input('post.id');
+            if(empty($id)){
+                return show(false,'删除失败');
+            }
+            $condition = [
+                'id'    =>  ['in',$id]
+            ];
+            $data = [
+                'is_del'    =>  1
+            ];
+            $del_res = $category->editCategory($condition,$data);
+            if(!empty($del_res)){
+                return show(true,'删除成功');
+            }
+            return show(false,'删除失败');
+        }catch (Exception $e){
+            return show(false,"删除失败");
+        }
+    }
+
+    /**
+     * 添加分类
+     * @param $name 分类名
+     * @return \think\response\Json
+     */
+    public function addCategory()
+    {
+        try{
+            $category = new Category();
+            $name = input('post.name');
+            if(empty($name) || strlen($name) > 10){
+                return show(false,'请输入正确的分类名[1-10字]');
+            }
+            //添加数据
+            $data = [
+                'name'  =>  $name,
+                'create_time'   =>  time(),
+                'is_del'    =>  0
+            ];
+            $add_res = $category->addCategory($data);
+            if(empty($add_res)){
+                return show(false,'添加失败');
+            }
+            return show(true,'添加成功');
+        }catch(Exception $e){
+            return show(false,'添加失败');
+        }
     }
 
     //博文
