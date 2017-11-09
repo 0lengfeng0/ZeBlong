@@ -11,6 +11,13 @@
 
 // 应用公共文件
 
+/**
+ * ajax返回封装
+ * @param bool $status
+ * @param string $msg
+ * @param array $data
+ * @return \think\response\Json
+ */
 function show($status=false,$msg='',$data=[])
 {
     $response = [
@@ -19,6 +26,15 @@ function show($status=false,$msg='',$data=[])
         'date'      =>  $data
     ];
     return json($response);
+}
+
+/**
+ * 密码MD5
+ */
+function md5Str($str,$salt="")
+{
+    $res = md5($salt.'_'.$str);
+    return $res;
 }
 
 /**
