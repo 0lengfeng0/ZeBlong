@@ -67,17 +67,17 @@
             <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
                 <li class="disabled text-center">
-                    <a style="cursor:default;"><strong>John Smith</strong></a>
+                    <a style="cursor:default;"><strong>{:session('ZeBlong_admin_info')['name']}</strong></a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    <a href="#"><i class="fa fa-fw fa-user"></i> 个人</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> 设置</a>
                 </li>
                 <li>
-                    <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                    <a href="{:url('admin/Login/logOut')}"><i class="fa fa-fw fa-sign-out"></i> 注销</a>
                 </li>
             </ul>
         </div>
