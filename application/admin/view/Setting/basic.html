@@ -1,0 +1,41 @@
+{include file="Common/header" /}
+<!-- 这里引入自定义cs -->
+{include file="Common/menu" /}
+
+<div class="container-fluid cm-container-white">
+    <form>
+        <div class="form-group">
+            <label>博客中文名</label>
+            <input type="text" name="zh_name" class="form-control" placeholder="博客名">
+        </div>
+        <div class="form-group">
+            <label>博客英文名</label>
+            <input type="text" name="en_name" class="form-control" placeholder="Blong's name">
+        </div>
+        <div class="form-group">
+            <label>头像</label>
+            <input type="file" name="head_pic">
+            <!--<p class="help-block">Example block-level help text here.</p>-->
+        </div>
+        <div class="form-group">
+            <label>新浪微博</label>
+            <input type="text" name="sina_wb" class="form-control" placeholder="新浪微博">
+        </div>
+        <div class="form-group">
+            <label>微信二维码</label>
+            <input type="file" name="wx_code">
+            <!--<p class="help-block">Example block-level help text here.</p>-->
+        </div>
+        <div class="form-group">
+            <label>签名</label>
+            <textarea name="sign" class="form-control" rows="3" placeholder="签名"></textarea>
+        </div>
+        <div class="form-group text-right">
+        <button type="button" class="btn btn-default">确认</button>
+        </div>
+    </form>
+</div>
+
+{include file="Common/bottom" /}
+<!--这里引用自定义js-->
+{include file="Common/footer" /}

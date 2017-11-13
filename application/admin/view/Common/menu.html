@@ -10,11 +10,18 @@
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items">
                     <li class="{:isActive('Index')}"><a href="{:url('admin/Index/index')}" class="sf-house">主页</a></li>
-                    <li class="cm-submenu {:isActive('Blong',1,'open')}">
+                    <li class="cm-submenu {:isActive('Blong',1,'pre-open')}">
                         <a class="sf-window-layout">博客管理 <span class="caret"></span></a>
                         <ul>
                             <li class="{:isActive(array('category'),2)}"><a href="{:url('admin/Blong/category')}">分类管理</a></li>
                             <li class="{:isActive(array('content'),2)}"><a href="{:url('admin/Blong/content')}">博文管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="cm-submenu {:isActive('Setting',1,'pre-open')}">
+                        <a class="sf-wrench-screwdriver">设置 <span class="caret"></span></a>
+                        <ul>
+                            <li class="{:isActive(array('basic'),2)}"><a href="{:url('admin/Setting/basic')}">博客设置</a></li>
+                            <li class="{:isActive(array('passWord'),2)}"><a href="{:url('admin/Setting/passWord')}">重置密码</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -35,31 +42,19 @@
             <div id="cm-search-btn" class="btn btn-primary md-search-white" data-toggle="cm-search"></div>
         </div>
         <div class="dropdown pull-right">
-            <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">23</span> </button>
+            <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">1</span> </button>
             <div class="popover cm-popover bottom">
                 <div class="arrow"></div>
                 <div class="popover-content">
                     <div class="list-group">
                         <a href="#" class="list-group-item">
                             <h4 class="list-group-item-heading text-overflow">
-                                <i class="fa fa-fw fa-envelope"></i> Nunc volutpat aliquet magna.
+                                <i class="fa fa-fw fa-envelope"></i> 新评论
                             </h4>
-                            <p class="list-group-item-text text-overflow">Pellentesque tincidunt mollis scelerisque. Praesent vel blandit quam.</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <h4 class="list-group-item-heading">
-                                <i class="fa fa-fw fa-envelope"></i> Aliquam orci lectus
-                            </h4>
-                            <p class="list-group-item-text">Donec quis arcu non risus sagittis</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <h4 class="list-group-item-heading">
-                                <i class="fa fa-fw fa-warning"></i> Holy guacamole !
-                            </h4>
-                            <p class="list-group-item-text">Best check yo self, you're not looking too good.</p>
+                            <p class="list-group-item-text text-overflow">这是一条新留言留言留言！！</p>
                         </a>
                     </div>
-                    <div style="padding:10px"><a class="btn btn-success btn-block" href="#">Show me more...</a></div>
+                    <div style="padding:10px"><a class="btn btn-success btn-block" href="#">更多</a></div>
                 </div>
             </div>
         </div>
