@@ -20,7 +20,11 @@ class Common extends Controller
     {
         //读取session中的信息
         if(!$this->getLogSession()){
-            return $this->redirect("Login/index");
+            if(!$this->request->isAjax()){
+                return $this->redirect("Login/index");
+            }else{
+                return show(false,'请先登录！');
+            }
         }
     }
 

@@ -23,7 +23,7 @@ function show($status=false,$msg='',$data=[])
     $response = [
         'status'    =>  $status,
         'msg'       =>  $msg,
-        'date'      =>  $data
+        'data'      =>  $data
     ];
     return json($response);
 }

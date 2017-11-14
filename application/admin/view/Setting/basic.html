@@ -1,5 +1,7 @@
 {include file="Common/header" /}
 <!-- 这里引入自定义cs -->
+<!--bootstra-fileinput-->
+<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap-fileinput/js/fileinput.min.css">
 {include file="Common/menu" /}
 
 <div class="container-fluid cm-container-white">
@@ -14,8 +16,9 @@
         </div>
         <div class="form-group">
             <label>头像</label>
-            <input type="file" name="head_pic">
-            <!--<p class="help-block">Example block-level help text here.</p>-->
+            <input type="file" name="head_pic" class="projectfile" value="">
+            <input type="hidden" name="head" value="" data-id="">
+            <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
         </div>
         <div class="form-group">
             <label>新浪微博</label>
@@ -23,8 +26,9 @@
         </div>
         <div class="form-group">
             <label>微信二维码</label>
-            <input type="file" name="wx_code">
-            <!--<p class="help-block">Example block-level help text here.</p>-->
+            <input type="file" name="wx_code" class="projectfile" value="">
+            <input type="hidden" name="wx" value="" data-id="">
+            <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
         </div>
         <div class="form-group">
             <label>签名</label>
@@ -38,4 +42,14 @@
 
 {include file="Common/bottom" /}
 <!--这里引用自定义js-->
+<!--bootstrap-fileinput-->
+<script src="__STATIC__/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="__STATIC__/bootstrap-fileinput/js/locales/zh.js"></script>
+<script>
+    var SCOPE = {
+        upload_url  :   "{:url('admin/Upload/imgUpload')}",
+    };
+</script>
+<!--自定义js-->
+<script src="__STATIC__/admin/js/basic.js"></script>
 {include file="Common/footer" /}
