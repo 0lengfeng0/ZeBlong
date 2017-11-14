@@ -46,7 +46,7 @@ var projectfileoptions = {
     enctype:'multipart/form-data',
 };
 $(function(){
-    //上传控件初始化
+    //上传控件初始化及相关事件
     $('input[class=projectfile]').each(function() {
         var ele = $(this);
         var imageurl = $(this).attr("value");
@@ -82,6 +82,22 @@ $(function(){
         });
     });
 
-
+    //表单提交事件
+    $("#basic_btn").click(function(){
+        var post_data = $("#basic_form").serialize();
+        $.ajax({
+            type    :   'POST',
+            data    :   post_data,
+            url     :   SCOPE.post_basic_url,
+            dataType:   'json',
+            success :   function(res){
+                if(res.status == false){
+                    layer.msg('修改失败',{icon:5});
+                }else{
+                    layer.msg('修改成功',{icon:6});
+                }
+            }
+        });
+    });
 });
 
