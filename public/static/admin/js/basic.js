@@ -36,8 +36,9 @@ var projectfileoptions = {
     showCaption:false,//是否显示标题
     dropZoneEnabled: false,//是否显示拖拽区域
     language : 'zh',
+    autoReplace:true,
     allowedPreviewTypes : [ 'image' ],
-    allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+    allowedFileExtensions : [ 'jpg', 'png', 'gif','jpeg' ],
     minFileCount: 0,
     maxFileSize : 3072,
     maxFileCount:1, //表示允许同时上传的最大文件个数
@@ -54,7 +55,7 @@ $(function(){
         if (imageurl) {
             var op = $.extend({
                 initialPreview : [ // 预览图片的设置
-                    "<img src='" + imageurl + "' class='file-preview-image'>", ]
+                    "<img src='" + imageurl + "' class='file-preview-image img-responsive'>", ]
             }, projectfileoptions);
 
             $(this).fileinput(op);
@@ -63,8 +64,8 @@ $(function(){
         }
         $(this).on("filebatchselected", function(event, files) {
             //自动上传
-            // console.log(event);
-            // console.log(files);
+             console.log(event);
+            console.log(files);
             // $(this).fileinput("upload");
         }).on("fileuploaded", function (event, data, previewId, index){
             //异步成功回调

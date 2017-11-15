@@ -31,7 +31,7 @@ class Setting extends Common
             if(!empty(input('wx'))){
                 $data['sign'] = input('sign');
             }
-            $data = serialize($data);
+            $data = ['vardata'=>serialize($data)];
             try{
                 $edit_res = $setting->editSetting(['varkey'=>'basic'],$data);
                 if($edit_res === false){

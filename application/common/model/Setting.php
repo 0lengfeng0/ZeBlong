@@ -22,6 +22,7 @@ class Setting extends Model
         if(!is_array($condition) || empty($condition)){
             exception('获取数据信息失败');
         }
+
         $res = $this->where($condition)->update($data);
         return $res;
     }
