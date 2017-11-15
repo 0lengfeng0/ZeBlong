@@ -64,9 +64,9 @@ $(function(){
         }
         $(this).on("filebatchselected", function(event, files) {
             //自动上传
-             console.log(event);
-            console.log(files);
-            // $(this).fileinput("upload");
+            //  console.log(event);
+            // console.log(files);
+            $(this).fileinput("upload");
         }).on("fileuploaded", function (event, data, previewId, index){
             //异步成功回调
             if(data.response.status != true){
