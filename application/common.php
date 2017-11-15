@@ -77,3 +77,18 @@ function isActive($str = '',$type=1,$choose_name='active')
     }
     return '';
 }
+
+/**
+ * 验证密码复杂程度
+ */
+/**
+ * 验证密码复杂度
+ *
+ */
+function checkPassword($password)
+{
+    if (empty($password) || !preg_match('/^[a-zA-Z0-9]{6,20}$/', $password) || preg_match('/^[0-9]{6,20}$/', $password) || preg_match('/^[a-zA-Z]{6,20}$/', $password)) {
+        return false;
+    }
+    return true;
+}
