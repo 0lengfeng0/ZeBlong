@@ -28,7 +28,7 @@ class Setting extends Common
             if(!empty(input('wx'))){
                 $data['wx_code'] = input('wx');
             }
-            if(!empty(input('wx'))){
+            if(!empty(input('sign'))){
                 $data['sign'] = input('sign');
             }
             $data = ['vardata'=>serialize($data)];
