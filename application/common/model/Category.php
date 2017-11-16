@@ -47,4 +47,10 @@ class Category extends Model
         $res = $this->where($condition)->update($data);
         return $res;
     }
+    //按条件取数据
+    public function getCategoryByCond($condition=[],$field="*")
+    {
+        $res = $this->where($condition)->field($field)->select();
+        return $res;
+    }
 }

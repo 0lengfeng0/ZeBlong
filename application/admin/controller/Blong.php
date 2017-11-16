@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 
+use app\common\model\Content;
 use app\common\model\Category;
 use think\Exception;
 
@@ -156,7 +157,72 @@ class Blong extends Common
     //博文
     public function content()
     {
+        if(request()->isPost()){
+            //ajax查询
+            try{
+                $content = new Content();
+                $category = input('post.category');
+                $limit = input('post.limit');   //页面大小
+                $offset = input('post.offset'); //页码
+                $order = input('post.order');   //排序规则
+                $sort = input('post.sort');     //排序字段
+                $search = input('post.search');      //搜索关键字
 
+                $condition = [
+                    'is_del'     =>  0,
+                    'title'      =>  ['like','%'.$search.'%'],
+                ];
+                $cond = [
+                    'a.is_del'     =>  0,
+                    'a.title'      =>  ['like','%'.$search.'%'],
+                ];
+                if(!empty($category)){
+                    $condition['category_id'] = $category;
+                    $cond['a.category_id'] = $category;
+                }
+                $order_str = 'update_time DESC';
+                $or_str = 'a.update_time DESC';
+                if(!empty($order) && !empty($sort)){
+                    $order_str = $sort.' '.$order;
+                    $or_str = 'a.'.$sort.' '.$order;
+                }
+                $page = array(
+                    'limit' => $limit,
+                    'offset'=> intval($offset) + 1,
+                );
+                //读取博文总数
+                $count = $content->getContentCount($condition);
+                if($count === false){
+                    exception('获取数据总数失败');
+                }elseif($count == 0){
+                   exception('暂无数据');
+                }
+                //查询文章数据
+                $join = [
+                    ['__CATEGORY__ b','category_id=b.id']
+                ];
+                $field = 'a.*,b.id as cate_id,b.name as cate_name';
+                $content_list = $content->getContentByPage($cond,$page,$or_str,$join,$field);
+                if($content_list === false){
+                    exception('获取数据失败');
+                }
+//                var_dump(json_encode($content_list));exit;
+                $content_list = json_decode(json_encode($content_list),true);   //对象转数组
+                $result = [];
+                $result['total'] = $count;
+                $result['rows'] = $content_list;
+                return json($result);
+            }catch(Exception $e){
+                return json(['total'=>0,'rows'=>[]]);
+            }
+        }
+        //获取全部分类
+        $category = new Category();
+        $cate_list = $category->getCategoryByCond(['is_del'=>0],'id,name');
+        if($cate_list === false){
+            return $this->error('获取分类数据失败！');
+        }
+        $this->assign('category',$cate_list);
         $this->assign('_title','博文管理');
         return $this->fetch();
     }

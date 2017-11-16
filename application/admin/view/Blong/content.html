@@ -16,12 +16,11 @@
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
                </a>
                </span>
-               <select class="form-control">
-                  <option>全部分类</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+               <select class="form-control" id="category_select">
+                  <option value="">全部分类</option>
+                  {foreach name="category" item="vo"}
+                  <option value="{$vo.id}">{$vo.name}</option>
+                  {/foreach}
                </select>
             </div>
             <table class="table table-bordered table-hover" id="content_table">
@@ -35,7 +34,9 @@
 {include file="Common/bottom" /}
 <!--这里引用自定义js-->
 <script>
-
+   var SCOPE = {
+     'get_content_url'  :  "{:url('admin/Blong/content')}",
+   };
 </script>
-<script src="__STARUC__/admin/js/content.js"></script>
+<script src="__STATIC__/admin/js/content.js"></script>
 {include file="Common/footer" /}
