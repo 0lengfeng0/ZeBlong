@@ -12,7 +12,7 @@
                <button type="button" class="btn btn-danger " id="del_all_btn">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除
                </button>
-               <a href="#" class="btn btn-info " id="add_cat_btn">
+               <a href="{:url('admin/Blong/addContent')}" class="btn btn-info " id="add_cat_btn">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
                </a>
                </span>
@@ -35,7 +35,9 @@
 <!--这里引用自定义js-->
 <script>
    var SCOPE = {
-     'get_content_url'  :  "{:url('admin/Blong/content')}",
+       'get_content_url'   :  "{:url('admin/Blong/content')}",
+       'del_content_url'   :  "{:url('admin/Blong/delContent')}",
+       'edit_content_url'  :  "{:url('admin/Blong/editContent')}"
    };
 </script>
 <script src="__STATIC__/admin/js/content.js"></script>

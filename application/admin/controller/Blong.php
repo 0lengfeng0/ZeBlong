@@ -154,7 +154,10 @@ class Blong extends Common
         }
     }
 
-    //博文
+    /**
+     * 博文列表
+     * @return mixed|\think\response\Json|void
+     */
     public function content()
     {
         if(request()->isPost()){
@@ -225,5 +228,48 @@ class Blong extends Common
         $this->assign('category',$cate_list);
         $this->assign('_title','博文管理');
         return $this->fetch();
+    }
+
+    /**
+     * 删除博文
+     */
+    public function delContent()
+    {
+        try{
+            $content = new Content();
+            $id = input('post.id');
+            if(empty($id)){
+                return show(false,'删除失败');
+            }
+            $condition = [
+                'id'    =>  ['in',$id]
+            ];
+            $data = [
+                'is_del'    =>  1
+            ];
+            $del_res = $content->editContent($condition,$data);
+            if(!empty($del_res)){
+                return show(true,'删除成功');
+            }
+            return show(false,'删除失败');
+        }catch (Exception $e){
+            return show(false,"删除失败");
+        }
+    }
+
+    /**
+     * 添加博文
+     */
+    public function addContent()
+    {
+        return $this->fetch('contentDetail');
+    }
+
+    /**
+     * 编辑博文
+     */
+    public function editContent()
+    {
+        return $this->fetch('contentDetail');
     }
 }

@@ -29,4 +29,17 @@ class Content extends Model
         $res = $res->field($field)->select();
         return $res;
     }
+
+    /**
+     * 修改数据
+     */
+    public function editContent($condition=[],$data=[])
+    {
+        if(!is_array($condition) || !is_array($data) || empty($data)){
+            exception('获取要修改的数据信息失败');
+        }
+        $res = $this->where($condition)->update($data);
+        return $res;
+    }
+
 }
