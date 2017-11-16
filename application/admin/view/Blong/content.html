@@ -2,10 +2,40 @@
 <!-- 这里引入自定义cs -->
 {include file="Common/menu" /}
 
-<div class="container-fluid cm-container-white">
-   博文
+<div class="container-fluid">
+   <div class="panel panel-default">
+      <div class="panel-heading">全部博文</div>
+      <div class="panel-body" id="demo-buttons">
+         <div class="table-responsive">
+            <div id="toolbar" class="form-inline">
+               <span class="btn-group">
+               <button type="button" class="btn btn-danger " id="del_all_btn">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除
+               </button>
+               <a href="#" class="btn btn-info " id="add_cat_btn">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
+               </a>
+               </span>
+               <select class="form-control">
+                  <option>全部分类</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+               </select>
+            </div>
+            <table class="table table-bordered table-hover" id="content_table">
+
+            </table>
+         </div>
+      </div>
+   </div>
 </div>
 
 {include file="Common/bottom" /}
 <!--这里引用自定义js-->
+<script>
+
+</script>
+<script src="__STARUC__/admin/js/content.js"></script>
 {include file="Common/footer" /}

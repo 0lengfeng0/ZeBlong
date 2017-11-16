@@ -60,5 +60,5 @@ var TableInit = function(){
  * @returns {string}
  */
 function formatDate(ns){
-    return new Date(parseInt(ns) * 1000).toLocaleString('chinese',{hour12:false}).substr(0,15).replace(/年|月|\//g, "-").replace(/日/g, " ");
+    return new Date(parseInt(ns) * 1000).toLocaleString('chinese',{hour12:false}).replace(/年|月|\//g, "-").replace(/日/g, " ");
 }
