@@ -4,40 +4,44 @@
 <link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap-fileinput/js/fileinput.min.css">
 {include file="Common/menu" /}
 
-<div class="container-fluid cm-container-white">
-    <form id="basic_form">
-        <div class="form-group">
-            <label>博客中文名</label>
-            <input type="text" name="zh_name" class="form-control" placeholder="博客名" value="{$basic['zh_name'] || default=''}">
+<div class="container-fluid ">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id="basic_form">
+                <div class="form-group">
+                    <label>博客中文名</label>
+                    <input type="text" name="zh_name" class="form-control" placeholder="博客名" value="{$basic['zh_name'] || default=''}">
+                </div>
+                <div class="form-group">
+                    <label>博客英文名</label>
+                    <input type="text" name="en_name" class="form-control" placeholder="Blong's name" value="{$basic['en_name'] || default=''}">
+                </div>
+                <div class="form-group">
+                    <label>头像</label>
+                    <input type="file" name="head_pic" class="projectfile" value="{$basic['head_pic'] || default=''}">
+                    <input type="hidden" name="head" value="{$basic['head_pic'] || default=''}" data-id="">
+                    <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
+                </div>
+                <div class="form-group">
+                    <label>新浪微博</label>
+                    <input type="text" name="sina_wb" class="form-control" placeholder="新浪微博" value="{$basic['sina_wb'] || default=''}">
+                </div>
+                <div class="form-group">
+                    <label>微信二维码</label>
+                    <input type="file" name="wx_code" class="projectfile" value="{$basic['wx_code'] || default=''}">
+                    <input type="hidden" name="wx" value="{$basic['wx_code'] || default=''}" data-id="">
+                    <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
+                </div>
+                <div class="form-group">
+                    <label>签名</label>
+                    <textarea name="sign" class="form-control" rows="3" placeholder="签名">{$basic['sign'] || default=''}</textarea>
+                </div>
+                <div class="form-group text-right">
+                <button type="button" class="btn btn-default" id="basic_btn">确认</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label>博客英文名</label>
-            <input type="text" name="en_name" class="form-control" placeholder="Blong's name" value="{$basic['en_name'] || default=''}">
-        </div>
-        <div class="form-group">
-            <label>头像</label>
-            <input type="file" name="head_pic" class="projectfile" value="{$basic['head_pic'] || default=''}">
-            <input type="hidden" name="head" value="{$basic['head_pic'] || default=''}" data-id="">
-            <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
-        </div>
-        <div class="form-group">
-            <label>新浪微博</label>
-            <input type="text" name="sina_wb" class="form-control" placeholder="新浪微博" value="{$basic['sina_wb'] || default=''}">
-        </div>
-        <div class="form-group">
-            <label>微信二维码</label>
-            <input type="file" name="wx_code" class="projectfile" value="{$basic['wx_code'] || default=''}">
-            <input type="hidden" name="wx" value="{$basic['wx_code'] || default=''}" data-id="">
-            <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过2.0M</p>
-        </div>
-        <div class="form-group">
-            <label>签名</label>
-            <textarea name="sign" class="form-control" rows="3" placeholder="签名">{$basic['sign'] || default=''}</textarea>
-        </div>
-        <div class="form-group text-right">
-        <button type="button" class="btn btn-default" id="basic_btn">确认</button>
-        </div>
-    </form>
+    </div>
 </div>
 
 {include file="Common/bottom" /}
