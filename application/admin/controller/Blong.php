@@ -33,7 +33,7 @@ class Blong extends Common
                 }
                 $page = array(
                     'limit' => $limit,
-                    'offset'=> intval($offset) + 1,
+                    'offset'=> intval($offset/$limit) + 1,
                 );
                 //查询数据总数
                 $count = $category->getCategoryCount($condition);
@@ -191,7 +191,7 @@ class Blong extends Common
                 }
                 $page = array(
                     'limit' => $limit,
-                    'offset'=> intval($offset) + 1,
+                    'offset'=> intval($offset/$limit) + 1,
                 );
                 //读取博文总数
                 $count = $content->getContentCount($condition);
