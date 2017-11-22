@@ -42,4 +42,28 @@ class Content extends Model
         return $res;
     }
 
+    /**
+     * 获取文章详情数据
+     */
+    public function getContentDetail($condition=[],$field='*',$join=[])
+    {
+        $res = $this->alias("a")->where($condition);
+        if(!empty($join)){
+            $res = $res->join($join);
+        }
+        $res = $res->field($field)->find();
+        return $res;
+    }
+
+    /**
+     * 新增数据
+     */
+    public function addContent($data=[])
+    {
+        if(!is_array($data) || empty($data)){
+            exception('获取数据失败');
+        }
+        $res = $this->data($data)->save();
+        return $res;
+    }
 }

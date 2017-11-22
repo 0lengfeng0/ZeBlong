@@ -6,21 +6,46 @@
 
 <div class="container-fluid">
     <div class="panel panel-default">
+        <div class="panel-heading text-left" style="text-align: left">
+            <a href="{:url('admin/Blong/content')}" class="btn btn-link"><span></span> 返回</a>
+        </div>
         <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label>原密码</label>
-                    <input type="password" name="old_psw" class="form-control" placeholder="原密码" value="">
+            <form id="content_form">
+                <input type="hidden" name="id" value="{$content->id | default=''}">
+                <div class="form-group col-md-6">
+                    <label>标题</label>
+                    <input type="text" name="title" class="form-control" placeholder="标题" value="{$content->title | default=''}">
                 </div>
-                <div class="form-group">
-                    <label>新密码</label>
-                    <input type="password" name="new_psw" class="form-control" placeholder="新密码" value="">
+                <div class="form-group col-md-6">
+                    <label>作者</label>
+                    <input type="text" name="author" class="form-control" placeholder="作者" value="{$content->author | default=''}">
+                </div>
+                <div class="form-group  col-md-3">
+                    <label>分类</label>
+                    <select class="form-control" name="category_id">
+                        <option value="">请选择</option>
+                        {foreach name="$category" item="vo"}
+                        <option value="{$vo->id}" {if condition="$vo->is_del eq 1"} disabled {/if} {if condition=" !empty($content) && $content->category_id eq $vo->id"}selected{/if}>{$vo->name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>评论数</label>
+                    <input type="text" name="" readonly class="form-control" placeholder="评论数" value="{$content->comment_num | default='0'}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>浏览量</label>
+                    <input type="text" name="" readonly class="form-control" placeholder="浏览量" value="{$content->read_num | default='0'}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>发布时间</label>
+                    <input type="text" name="" readonly class="form-control" placeholder="发布时间" value="{if condition='!empty($content->create_time)'} {$content->create_time} {/if}">
                 </div>
                 <div class="form-group" id="markdown">
-
+                    <textarea style="display:none;" name="contentDetail">{$content->content ? $content->content : ''}</textarea>
                 </div>
                 <div class="form-group text-right">
-                    <button type="button" class="btn btn-default" id="psw_btn">确认</button>
+                    <button type="button" class="btn btn-default" id="content_btn">确认</button>
                 </div>
             </form>
         </div>
@@ -32,8 +57,10 @@
 <script src="__STATIC__/editor.md/editormd.js"></script>
 <script>
     var SCOPE = {
-        'editormd_path_url' :   "__STATIC__/editor.md/lib/"
+        'editormd_path_url' :   "__STATIC__/editor.md/lib/",
+        'due_content_url'   :   "{:url('admin/Blong/dueContent')}"
     };
+    //编辑器初始内容
 </script>
 <script src="__STATIC__/admin/js/contentDetail.js"></script>
 {include file="Common/footer" /}

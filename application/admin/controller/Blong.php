@@ -3,7 +3,9 @@ namespace app\admin\controller;
 
 use app\common\model\Content;
 use app\common\model\Category;
+use app\common\model\ContentDetail;
 use think\Exception;
+use think\DB;
 
 class Blong extends Common
 {
@@ -262,6 +264,17 @@ class Blong extends Common
      */
     public function addContent()
     {
+        try{
+            //获取全部分类
+            $category = new Category();
+            $cate_list = $category->getCategoryByCond([],'id,name,is_del');
+            if($cate_list === false){
+                exception("获取文章分类失败");
+            }
+            $this->assign('category',$cate_list);
+        }catch (Exception $e){
+            return $this->error($e->getMessage());
+        }
         return $this->fetch('contentDetail');
     }
 
@@ -270,6 +283,133 @@ class Blong extends Common
      */
     public function editContent()
     {
+        $content = new Content();
+        $id = input('get.id');     //博文id
+        if(empty($id)){
+            return $this->error('获取文章id失败');
+        }
+        try{
+            //查询文章详情内容
+            $condition = ['a.id'=>$id];
+            $field = 'a.*,b.content,b.read_num,b.author,b.comment_num,c.name,c.is_del as c_del';
+            $join = [
+                [config("prefix").'content_detail b','b.content_id=a.id'],
+                [config("prefix").'category c','c.id=a.category_id']
+            ];
+            $content_info = $content->getContentDetail($condition,$field,$join);
+            if(empty($content_info)){
+                exception("获取文章详情失败");
+            }
+            if($content_info->getAttr('is_del') == 1) {
+                exception("改文章已被删除");
+            }
+            //获取全部分类
+            $category = new Category();
+            $cate_list = $category->getCategoryByCond([],'id,name,is_del');
+            if($cate_list === false){
+                exception("获取文章分类失败");
+            }
+            $this->assign('content',$content_info);
+            $this->assign('category',$cate_list);
+        }catch (Exception $e){
+            return $this->error($e->getMessage());
+        }
         return $this->fetch('contentDetail');
+    }
+
+    /**
+     * 处理添加\编辑博文
+     */
+    public function dueContent()
+    {
+        $content = new Content();
+        $contentDet = new ContentDetail();
+        $title = input("post.title");
+        $author = input("post.author");
+        $category_id = input('post.category_id');
+        $contentDetail = input('post.contentDetail');
+        if(empty($title)){
+            return show(false,'标题不能为空');
+        }
+        if(empty($author)){
+            return show(false,'作者不能为空');
+        }
+        if(empty($category_id)){
+            return show(false,'分类不能为空');
+        }
+        if(empty($contentDetail)){
+            return show(false,'文章内容不能为空');
+        }
+        if(empty(input('post.id'))){
+            //添加
+            try{
+                //主表
+                DB::startTrans();
+                $data1 = [
+                    'title'         =>  $title,
+                    'abstract'      =>  '',
+                    'category_id'   =>  $category_id,
+                    'create_time'   =>  time(),
+                    'update_time'   =>  time(),
+                    'is_del'        =>  0
+                ];
+                $add_res1 = $content->addContent($data1);
+                if(empty($add_res1)){
+                    DB::rollback();
+                    return show(false,'新增失败');
+                }
+                //子表
+                $data2 = [
+                    'content_id'    =>  $content->id,
+                    'content'       =>  $contentDetail,
+                    'read_num'      =>  0,
+                    'author'        =>  $author,
+                    'comment_num'   =>  0
+                ];
+                $add_res2 = $contentDet->addContentDetail($data2);
+                if(empty($add_res2)){
+                    DB::rollback();
+                    return show(false,'新增失败');
+                }
+                DB::commit();
+                return show(true,'发布成功');
+            }catch(Exception $e){
+                DB::rollback();
+                return show(false,$e->getMessage());
+            }
+        }else{
+            //修改
+            $id = input('post.id');
+            try{
+                //主表
+                DB::startTrans();
+                $data3 = [
+                    'title'         =>  $title,
+                    'abstract'      =>  '',
+                    'category_id'   =>  $category_id,
+                    'update_time'   =>  time(),
+                ];
+                $edit_res1 = $content->editContent(['id'=>$id],$data3);
+                if($edit_res1 === false){
+                    DB::rollback();
+                    return show(false,'更新失败');
+                }
+                //子表
+                $data4 =[
+                    'content'   =>  $contentDetail,
+                    'author'    =>  $author,
+                ];
+                $edit_res2 = $contentDet->editContentDetail(['content_id'=>$id],$data4);
+                if($edit_res2 === false){
+                    DB::rollback();
+                    return show(false,'更新失败');
+                }
+                DB::commit();
+                return show(true,'更新成功');
+            }catch(Exception $e){
+                DB::rollback();
+                return show(false,'新增失败');
+            }
+        }
     }
 }
