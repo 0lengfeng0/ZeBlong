@@ -6,6 +6,7 @@ $(function(){
         height  : 640,              //初始高度
         codeFold : true,            //代码折叠
         syncScrolling : "single",
+        emoji: true,
         path    : SCOPE.editormd_path_url
     });
     //表单提交事件
