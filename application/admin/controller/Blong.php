@@ -275,6 +275,7 @@ class Blong extends Common
         }catch (Exception $e){
             return $this->error($e->getMessage());
         }
+        $this->assign('_title','添加博文');
         return $this->fetch('contentDetail');
     }
 
@@ -314,6 +315,7 @@ class Blong extends Common
         }catch (Exception $e){
             return $this->error($e->getMessage());
         }
+        $this->assign("_title",'编辑博文');
         return $this->fetch('contentDetail');
     }
 

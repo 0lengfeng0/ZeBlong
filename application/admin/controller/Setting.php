@@ -57,6 +57,7 @@ class Setting extends Common
         }
         $info = unserialize($info->getAttr('vardata'));
         $this->assign('basic',$info);
+        $this->assign('_title','博客设置');
         return $this->fetch();
     }
 
@@ -107,6 +108,7 @@ class Setting extends Common
             }
 
         }
+        $this->assign('_title','重置密码');
         return $this->fetch();
     }
 }
