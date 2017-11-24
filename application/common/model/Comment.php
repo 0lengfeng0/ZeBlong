@@ -29,4 +29,16 @@ class Comment extends Model
         $res = $res->page($page['offset'].','.$page['limit'])->select();
         return $res;
     }
+
+    /**
+     * 修改一条数据
+     */
+    public function editComment($condition=[],$data=[])
+    {
+        if(!is_array($condition) || !is_array($data) || empty($data)){
+            exception('获取要修改的数据信息失败');
+        }
+        $res = $this->where($condition)->update($data);
+        return $res;
+    }
 }

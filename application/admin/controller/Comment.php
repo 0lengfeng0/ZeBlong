@@ -73,6 +73,25 @@ class Comment extends Common
      */
     public function deleteComment()
     {
-
+        try{
+            $comment = new \app\common\model\Comment();
+            $id = input('post.id');
+            if(empty($id)){
+                return show(false,'删除失败');
+            }
+            $condition = [
+                'id'    =>  ['in',$id]
+            ];
+            $data = [
+                'is_del'   =>   1
+            ];
+            $del_res = $comment->editComment($condition,$data);
+            if(empty($del_res)){
+                return show(false,'删除失败');
+            }
+            return show(true,'删除成功');
+        }catch (Exception $e){
+            return show(false,'删除失败');
+        }
     }
 }
