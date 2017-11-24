@@ -1,4 +1,9 @@
 $(function(){
+    $("input").keydown(function(e){
+        event = e||window.event;
+        if (event.keyCode==13)  //回车键的键值为13
+            $("#login_btn").trigger('click'); //调用登录按钮的登录事件
+    });
     $("#login_btn").click(function(){
         //表单验证
         if(!$('input[name="name"]').val()){
