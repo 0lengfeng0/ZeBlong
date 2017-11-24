@@ -48,6 +48,10 @@ class Comment extends Model
      */
     public function getCommentInfoFromMemcached()
     {
-
+        $admin_comment_info = [];
+        if(!empty(cache('admin_comment'))){
+            $admin_comment_info = cache('admin_comment');
+        }
+        return $admin_comment_info;
     }
 }

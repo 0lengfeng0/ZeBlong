@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use think\Controller;
+use think\Exception;
 use think\Request;
 
 class Common extends Controller
@@ -16,6 +17,8 @@ class Common extends Controller
         parent::__construct($request);
         //验证登录状态
         $this->checkLogin();
+        //得到评论信息
+        $this->assign('_comment_info',$this->getMemcacheCommentInfo());
     }
 
     /**
@@ -42,6 +45,20 @@ class Common extends Controller
             return session('ZeBlong_admin_info');
         }else{
             return false;
+        }
+    }
+
+    /**
+     * 获取memcache中评论信息
+     */
+    public function getMemcacheCommentInfo()
+    {
+        try{
+            $comment = new \app\common\model\Comment();
+            $info = $comment->getCommentInfoFromMemcached();
+            return $info;
+        }catch (Exception $e){
+            return [];
         }
     }
 }
