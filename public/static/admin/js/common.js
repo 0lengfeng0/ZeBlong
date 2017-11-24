@@ -2,6 +2,35 @@
  * Created by xs-01 on 2017/11/8.
  */
 //公共js
+$(function(){
+     //回车全局搜索
+    $("input[name='_globle_search']").keydown(function(e){
+        event = e||window.event;
+        //回车键的键值为13
+        if (event.keyCode==13){
+            if(!$(this).val()){
+                layer.msg("请输入搜索内容",{icon:7});
+                return false;
+            }
+            var jump_url = $(this).data('jump');
+            //查询文章是否存在
+            $.ajax({
+                type    :   "POST",
+                data    :   {title:$(this).val()},
+                url     :   $(this).data('url'),
+                dataType:   "json",
+                success :   function(res){
+                    if(res.status == false){
+                        layer.msg("文章不存在或已被删除",{icon:5});
+                    }else{
+                        // alert(res.data.id);
+                        window.location.href = jump_url+"?id="+res.data.id;
+                    }
+                }
+            })
+        }
+    });
+});
 /**
  * 初始化bootstrap-table表格
  * @type {{Init: oTableInit.Init, queryParams: oTableInit.queryParams}}
