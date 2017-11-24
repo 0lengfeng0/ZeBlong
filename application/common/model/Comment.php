@@ -41,4 +41,13 @@ class Comment extends Model
         $res = $this->where($condition)->update($data);
         return $res;
     }
+
+
+    /**
+     * 读memcached中留言总数
+     */
+    public function getCommentInfoFromMemcached()
+    {
+
+    }
 }

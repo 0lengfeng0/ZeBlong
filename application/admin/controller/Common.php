@@ -6,6 +6,11 @@ use think\Request;
 
 class Common extends Controller
 {
+    /**
+     * 构造函数
+     * Common constructor.
+     * @param Request|null $request
+     */
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
